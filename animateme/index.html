@@ -8,6 +8,7 @@
     window.addEventListener('load', function () {
 
       const dots = document.querySelectorAll(".dot")
+      const circles = document.querySelectorAll(".circle")
       const button = document.querySelector("button")
       const animations = []
       const timing = {
@@ -15,7 +16,6 @@
         iterations: Infinity,
         direction: 'alternate',
         easing: 'ease-in-out',
-        delay: 200
       };
 
       const pauseAnimations = () => animations.forEach(animation => animation.pause())
@@ -26,6 +26,7 @@
       for (let index = 0; index < dots.length; index++) {
         const dot = dots[index]
         const start = (index / dots.length) * 360;
+        timing.delay = 0
 
         const frames = [
           { transform: `rotate(${start}deg) translate(80px)` },
@@ -36,8 +37,22 @@
         animations.push(animate)
       }
 
-      button.addEventListener('mouseover', pauseAnimations)
-      button.addEventListener('mouseleave', playAnimations)
+
+      for (let index = 0; index < circles.length; index++) {
+        const circle = circles[index];
+
+        timing.delay = index * 500;
+
+        const frames = [
+          { transform: `translateY(-100px) translate3d(50px, -80px, -150px)` },
+          { transform: `translateY(0px) translate3d(0)` }
+        ]
+        // transform: translate3d(42px, -62px, -135px);
+        circle.animate(frames, timing)
+      }
+
+      button.addEventListener('mousedown', pauseAnimations)
+      button.addEventListener('mouseup', playAnimations)
 
 
     });
@@ -46,7 +61,9 @@
 
 <body>
 
-  <button>Button here</button>
+  <div style="width: 100%;">
+    <button>Press down to pause animation</button>
+  </div>
 
   <div class="dots">
     <div class="dot"></div>
@@ -56,6 +73,16 @@
     <div class="dot"></div>
     <div class="dot"></div>
   </div>
+  <div class="circles">
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+  </div>
+
+
 
 </body>
 
