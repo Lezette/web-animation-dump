@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, user-scalable=no" />
+  <link href="site.css" rel="stylesheet" />
+  <script>
+    window.addEventListener('load', function () {
+
+      const dots = document.querySelectorAll(".dot")
+      const button = document.querySelector("button")
+      const animations = []
+      const timing = {
+        duration: 2500,
+        iterations: Infinity,
+        direction: 'alternate',
+        easing: 'ease-in-out',
+        delay: 200
+      };
+
+      const pauseAnimations = () => animations.forEach(animation => animation.pause())
+      const playAnimations = () => animations.forEach(animation => animation.play())
+
+
+
+      for (let index = 0; index < dots.length; index++) {
+        const dot = dots[index]
+        const start = (index / dots.length) * 360;
+
+        const frames = [
+          { transform: `rotate(${start}deg) translate(80px)` },
+          { transform: `rotate(${360 - (index + 5)}deg) translate(80px)` },
+        ];
+
+        const animate = dot.animate(frames, timing)
+        animations.push(animate)
+      }
+
+      button.addEventListener('mouseover', pauseAnimations)
+      button.addEventListener('mouseleave', playAnimations)
+
+
+    });
+  </script>
+</head>
+
+<body>
+
+  <button>Button here</button>
+
+  <div class="dots">
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+  </div>
+
+</body>
+
+</html>
