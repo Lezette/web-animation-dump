@@ -1,21 +1,34 @@
 
-let activeTarget = null;
+var activeTarget = null;
 let activePlayer = null;
 
 
 /**
  * Close any active group target.
  */
-function closeActive () {
+async function closeActive () {
   if (!activeTarget) { return; }
 
   const popup = activeTarget.querySelector('.popup');
-  // popup.style.visibility = 'hidden';
+  const fill = popup.querySelector('.fill');
+
+  activePlayer.reverse();
+
+  await activePlayer.finished
+
+  const popupEffect = new KeyframeEffect(popup, [{ visibility: 'visible' }, { visibility: 'hidden' }], { fill: 'forwards' });
+  const popupAnimation = new Animation(popupEffect, document.timeline);
+  popupAnimation.play();
+
+  await popupAnimation.finished.then(() => {
+    activePlayer.cancel();
+    popupAnimation.cancel();
+    popup.style = '';
+  });
 
   activeTarget = null;
-  activePlayer.reverse();
-  activePlayer.addEventListener('finish', () => popup.style.visibility = 'hidden')
   activePlayer = null;
+
 
 }
 
@@ -23,13 +36,17 @@ function closeActive () {
  * Handle a click on a group. Responsible for closing any previous groups.
  * @param {!Element} group selected, as per "icon-group" template
  */
-function groupClick (group) {
+
+
+async function groupClick (group) {
   if (activeTarget) {
-    if (activeTarget == group) {
+
+    if (activeTarget.getAttribute("id") === group.getAttribute("id")) {
       return;  // already visible, do nothing
     }
-    closeActive();
+    await closeActive();
   }
+
   activeTarget = group;
 
   // Change the visibility of the group's popup.
@@ -43,6 +60,8 @@ function groupClick (group) {
 
   const fill = popup.querySelector('.fill');
 
+  console.log({ fill });
+
   fill.style.width = `${longEdge}px`;
   fill.style.height = `${longEdge}px`;
   fill.style.top = `${-((longEdge - dim) / 2)}px`;
@@ -53,9 +72,8 @@ function groupClick (group) {
     easing: 'ease-out'
   }
 
-  // activePlayer = fill.animate([{ transform: 'scale(0)' }, { transform: 'scale(1)' }], timing);
   const fillEffect = new KeyframeEffect(fill, [{ transform: 'scale(0)' }, { transform: 'scale(1)' }], timing);
-  const groupEffect = new SequenceEffect([fillEffect]);
-  activePlayer = new Animation(groupEffect, document.timeline)
+  activePlayer = new Animation(fillEffect, document.timeline)
+  activePlayer.play();
 }
 

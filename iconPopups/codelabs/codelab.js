@@ -25,18 +25,20 @@
  * Create dummy groups and icons.
  */
 window.addEventListener('load', function () {
-  var t = document.querySelector('template#icon-group');
-  var holder = document.querySelector('.icons');
-  for (var i = 0; i < 6; ++i) {
-    var icon = makeRandomIcon();
+  const t = document.querySelector('template#icon-group');
+  const holder = document.querySelector('.icons');
+  for (let i = 0; i < 6; ++i) {
+    const icon = makeRandomIcon();
 
-    var local = t.content.cloneNode(true).querySelector('*');
+    const local = t.content.cloneNode(true).querySelector('*');
+
+    local.setAttribute("id", `id-${i}`)
     local.appendChild(icon);
-    var childIcons = local.querySelector('.popup .icons');
+    const childIcons = local.querySelector('.popup .icons');
 
-    var count = Math.floor(Math.random() * 3) + 1;
-    for (var j = 0; j < count; ++j) {
-      var childIcon = makeRandomIcon();
+    const count = Math.floor(Math.random() * 3) + 1;
+    for (let j = 0; j < count; ++j) {
+      const childIcon = makeRandomIcon();
       childIcons.appendChild(childIcon);
     }
 
@@ -51,7 +53,7 @@ window.addEventListener('load', function () {
 window.addEventListener('load', function () {
   document.body.addEventListener('click', closeActive);
 
-  var groups = Array.prototype.slice.call(document.querySelectorAll('.group'));
+  const groups = Array.prototype.slice.call(document.querySelectorAll('.group'));
   groups.forEach(function (group) {
     group.addEventListener('click', function (event) {
       event.stopPropagation();
@@ -65,12 +67,12 @@ window.addEventListener('load', function () {
  * @return {!Element} ball icon with random color and picture
  */
 function makeRandomIcon () {
-  var ball = document.createElement('div');
+  const ball = document.createElement('div');
   ball.className = 'ball';
   ball.style.backgroundColor = randomMaterialColor();
 
-  var i = Math.floor(Math.random() * makeRandomIcon.icons.length);
-  var icon = document.createElement('i');
+  const i = Math.floor(Math.random() * makeRandomIcon.icons.length);
+  const icon = document.createElement('i');
   icon.className = 'material-icons';
   icon.textContent = makeRandomIcon.icons[i];
 
@@ -85,6 +87,6 @@ makeRandomIcon.icons = ('cake star thumb_up favorite new_releases comment ' +
  * @return {string} random material-ish color
  */
 function randomMaterialColor () {
-  var v = Math.round(Math.random() * 160) + 200;
+  const v = Math.round(Math.random() * 160) + 200;
   return 'hsl(' + v + ', 100%, 50%)';
 }
