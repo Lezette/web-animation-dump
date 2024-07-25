@@ -32,6 +32,7 @@ window.addEventListener('load', function () {
 
     const local = t.content.cloneNode(true).querySelector('*');
 
+    // Add unique ids for comparison
     local.setAttribute("id", `id-${i}`)
     local.appendChild(icon);
     const childIcons = local.querySelector('.popup .icons');

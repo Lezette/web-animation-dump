@@ -10,10 +10,10 @@ async function closeActive () {
   if (!activeTarget) { return; }
 
   const popup = activeTarget.querySelector('.popup');
-  const fill = popup.querySelector('.fill');
 
   activePlayer.reverse();
 
+  // ensure the animation is finished before moving on to next
   await activePlayer.finished
 
   const popupEffect = new KeyframeEffect(popup, [{ visibility: 'visible' }, { visibility: 'hidden' }], { fill: 'forwards' });
@@ -21,9 +21,11 @@ async function closeActive () {
   popupAnimation.play();
 
   await popupAnimation.finished.then(() => {
+    // cancel the animation instance to avoid glitch
     activePlayer.cancel();
     popupAnimation.cancel();
     popup.style = '';
+
   });
 
   activeTarget = null;
@@ -41,6 +43,7 @@ async function closeActive () {
 async function groupClick (group) {
   if (activeTarget) {
 
+    // You cannot use === to compare a DOM object so compare based on the ID
     if (activeTarget.getAttribute("id") === group.getAttribute("id")) {
       return;  // already visible, do nothing
     }
@@ -59,8 +62,6 @@ async function groupClick (group) {
   const longEdge = Math.sqrt(rect.width * rect.width + rect.height * rect.height);
 
   const fill = popup.querySelector('.fill');
-
-  console.log({ fill });
 
   fill.style.width = `${longEdge}px`;
   fill.style.height = `${longEdge}px`;
