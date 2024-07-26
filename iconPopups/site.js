@@ -1,6 +1,7 @@
 
 var activeTarget = null;
 let activePlayer = null;
+let activeIcons = null;
 
 
 /**
@@ -10,6 +11,10 @@ async function closeActive () {
   if (!activeTarget) { return; }
 
   const popup = activeTarget.querySelector('.popup');
+
+  // hide icons before closing the popup
+  activeIcons = activeIcons.reverse()
+  activeIcons.map((icon) => icon.reverse())
 
   activePlayer.reverse();
 
@@ -26,12 +31,10 @@ async function closeActive () {
     popupAnimation.cancel();
     popup.style = '';
 
-  });
+    activeIcons.map((icon) => icon.cancel())
+  })
 
   activeTarget = null;
-  activePlayer = null;
-
-
 }
 
 /**
@@ -62,6 +65,11 @@ async function groupClick (group) {
   const longEdge = Math.sqrt(rect.width * rect.width + rect.height * rect.height);
 
   const fill = popup.querySelector('.fill');
+  const icons = Array.prototype.slice.call(popup.querySelectorAll('.ball'));
+
+  icons.forEach(icon => {
+    icon.style.opacity = 0;
+  });
 
   fill.style.width = `${longEdge}px`;
   fill.style.height = `${longEdge}px`;
@@ -73,8 +81,32 @@ async function groupClick (group) {
     easing: 'ease-out'
   }
 
+  activeIcons = createIconEffects(icons, rect);
   const fillEffect = new KeyframeEffect(fill, [{ transform: 'scale(0)' }, { transform: 'scale(1)' }], timing);
   activePlayer = new Animation(fillEffect, document.timeline)
   activePlayer.play();
+
+  activePlayer.finished.then(() => {
+    playIconEffectsSequentially(activeIcons);
+  });
+
 }
+
+function createIconEffects (icons, rect) {
+  return icons.map(function (icon) {
+    const effect = [{ opacity: 0 }, { opacity: 1 }];
+    const timing = { duration: rect.height * 2 / icons.length, fill: 'forwards' };
+    return new Animation(new KeyframeEffect(icon, effect, timing), document.timeline);
+  });
+}
+
+function playIconEffectsSequentially (iconEffects) {
+  return iconEffects.reduce((promise, effect) => {
+    return promise.then(() => {
+      effect.play();
+      return effect.finished;
+    });
+  }, Promise.resolve());
+}
+
 
