@@ -10,31 +10,32 @@ let activeIcons = null;
 async function closeActive () {
   if (!activeTarget) { return; }
 
+  // create animation to hide popup
   const popup = activeTarget.querySelector('.popup');
+  const popupEffect = new KeyframeEffect(popup, [{ visibility: 'visible' }, { visibility: 'hidden' }], { fill: 'forwards' });
+  const popupAnimation = new Animation(popupEffect, document.timeline);
 
   // hide icons before closing the popup
-  activeIcons = activeIcons.reverse()
-  activeIcons.map((icon) => icon.reverse())
+  const reversedIcons = [...activeIcons].reverse();
+  reversedIcons.forEach((icon) => icon.reverse());
 
   activePlayer.reverse();
 
   // ensure the animation is finished before moving on to next
   await activePlayer.finished
 
-  const popupEffect = new KeyframeEffect(popup, [{ visibility: 'visible' }, { visibility: 'hidden' }], { fill: 'forwards' });
-  const popupAnimation = new Animation(popupEffect, document.timeline);
   popupAnimation.play();
 
-  await popupAnimation.finished.then(() => {
-    // cancel the animation instance to avoid glitch
-    activePlayer.cancel();
-    popupAnimation.cancel();
-    popup.style = '';
+  await popupAnimation.finished
 
-    activeIcons.map((icon) => icon.cancel())
-  })
+  // Cancel the animation instances to avoid glitches
+  activePlayer.cancel();
+  popupAnimation.cancel();
+  popup.style.visibility = '';
+  activeIcons.map((icon) => icon.cancel())
 
   activeTarget = null;
+  activePlayer = null;
 }
 
 /**
@@ -45,7 +46,6 @@ async function closeActive () {
 
 async function groupClick (group) {
   if (activeTarget) {
-
     // You cannot use === to compare a DOM object so compare based on the ID
     if (activeTarget.getAttribute("id") === group.getAttribute("id")) {
       return;  // already visible, do nothing
@@ -57,15 +57,15 @@ async function groupClick (group) {
 
   // Change the visibility of the group's popup.
   const popup = activeTarget.querySelector('.popup');
+  const fill = popup.querySelector('.fill');
+  const icons = Array.from(popup.querySelectorAll('.ball'));
+
   popup.style.visibility = 'visible';
 
 
   const rect = popup.getBoundingClientRect();
   const dim = Math.max(rect.width, rect.height);
   const longEdge = Math.sqrt(rect.width * rect.width + rect.height * rect.height);
-
-  const fill = popup.querySelector('.fill');
-  const icons = Array.prototype.slice.call(popup.querySelectorAll('.ball'));
 
   icons.forEach(icon => {
     icon.style.opacity = 0;
