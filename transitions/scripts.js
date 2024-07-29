@@ -1,3 +1,4 @@
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /**
  * Called when a new section has been loaded.
@@ -27,6 +28,13 @@ async function animateToSection (link, current, previous) {
 
   const scaleSteps = [{ transform: 'scale(0)' }, { transform: 'scale(1)' }];
   const timing = { duration: 2500, easing: 'ease-in-out' };
+
+  if (prefersReducedMotion) {
+    effectNode.style.transform = 'scale(1)'
+    buildFadeOut(previous)
+    buildFadeIn(current)
+    return
+  }
 
   const scaleEffect = new KeyframeEffect(effectNode, scaleSteps, timing);
 
@@ -67,6 +75,11 @@ function buildFadeIn (target) {
     { opacity: 0, transform: 'translate(0, 20em)' },
     { opacity: 1, transform: 'translate(0)' }
   ];
+  if (prefersReducedMotion) {
+    target.style.opacity = 1
+    target.style.transform = 'translate(0)'
+    return
+  }
   return new KeyframeEffect(target, steps, {
     duration: 500,
     delay: 500,
@@ -88,6 +101,14 @@ function buildFadeOut (target) {
     { visibility: 'visible', opacity: 1, transform: 'none' },
     { visibility: 'visible', opacity: 0, transform: transform }
   ];
+
+  if (prefersReducedMotion) {
+    target.style.opacity = 1
+    target.style.visibility = 'visible'
+    target.style.transform = transform
+    return
+  }
+
 
   return new KeyframeEffect(target, steps, {
     duration: 1500,
