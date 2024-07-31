@@ -29,12 +29,12 @@ async function animateToSection (link, current, previous) {
   const scaleSteps = [{ transform: 'scale(0)' }, { transform: 'scale(1)' }];
   const timing = { duration: 2500, easing: 'ease-in-out' };
 
-  if (prefersReducedMotion) {
-    effectNode.style.transform = 'scale(1)'
-    buildFadeOut(previous)
-    buildFadeIn(current)
-    return
-  }
+  // if (prefersReducedMotion) {
+  //   effectNode.style.transform = 'scale(1)'
+  //   buildFadeOut(previous)
+  //   buildFadeIn(current)
+  //   return
+  // }
 
   const scaleEffect = new KeyframeEffect(effectNode, scaleSteps, timing);
 
@@ -43,7 +43,13 @@ async function animateToSection (link, current, previous) {
   // Create and play animations
   const animations = allEffects.map(effect => new Animation(effect, document.timeline));
 
-  animations.forEach(animation => animation.play());
+
+  if (prefersReducedMotion) {
+    // jump to finished state
+    animations.forEach(animation => animation.finish());
+  } else {
+    animations.forEach(animation => animation.play());
+  }
 
   // Wait for all animations to finish
   await Promise.all(animations.map(animation => animation.finished));
@@ -51,9 +57,6 @@ async function animateToSection (link, current, previous) {
   header.style.backgroundColor = newColor;
   header.removeChild(effectNode);
 
-  // if (prefersReducedMotion) {
-
-  // }
 
   // const anim = effectNode.animate(scaleSteps, timing);
 
@@ -75,11 +78,6 @@ function buildFadeIn (target) {
     { opacity: 0, transform: 'translate(0, 20em)' },
     { opacity: 1, transform: 'translate(0)' }
   ];
-  if (prefersReducedMotion) {
-    target.style.opacity = 1
-    target.style.transform = 'translate(0)'
-    return
-  }
   return new KeyframeEffect(target, steps, {
     duration: 500,
     delay: 500,
@@ -101,15 +99,6 @@ function buildFadeOut (target) {
     { visibility: 'visible', opacity: 1, transform: 'none' },
     { visibility: 'visible', opacity: 0, transform: transform }
   ];
-
-  if (prefersReducedMotion) {
-    target.style.opacity = 1
-    target.style.visibility = 'visible'
-    target.style.transform = transform
-    return
-  }
-
-
   return new KeyframeEffect(target, steps, {
     duration: 1500,
     easing: 'ease-in'
