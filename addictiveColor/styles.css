@@ -1,0 +1,12 @@
+body {
+  margin: 0;
+  background: black;
+  overflow: hidden;
+}
+
+div {
+  background: black;
+  position: absolute;
+  width: 30px;
+  height: 30px;
+}
