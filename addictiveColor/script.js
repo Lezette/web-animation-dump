@@ -1,4 +1,4 @@
-const blockSize = 30;
+const blockSize = 60;
 const gridWidth = Math.ceil(innerWidth / blockSize)
 const gridHeight = Math.ceil(innerHeight / blockSize)
 const blockGrid = []
@@ -6,6 +6,9 @@ const prevX = {}
 const prevY = {}
 
 const main = () => {
+
+  // Create grids
+
   for (let x = 0; x < gridWidth; x++) {
     blockGrid[x] = [];
     for (let y = 0; y < gridHeight; y++) {
@@ -17,6 +20,7 @@ const main = () => {
   }
 
   document.body.addEventListener("mousemove", pointEvent)
+
   document.body.addEventListener("touchmove", (event) => {
     [].forEach.call(event.touches, pointEvent);
     event.preventDefault()
@@ -50,12 +54,16 @@ const main = () => {
     id = id || 0;
 
     const rgb = [0, 0, 0];
+    // change r,g, and b value to 255 every second
     rgb[Math.floor((Date.now() / 1000 + id) % 3)] = 255;
+
 
     element.animate({
       offest: 0.5,
       composite: 'add',
-      backgroundColor: `rgb(${rgb.join(',')})`
+      backgroundColor: `rgb(${rgb.join(',')})`,
+      boxShadow: `0px 0px 20px 20px rgba(${rgb.join(',')}, 50)`,
+      // filter: `drop-shadow(50px 20px 50px rgba(${rgb.join(',')}, 0.5))`
     }, 4000)
   }
 
