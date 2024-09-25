@@ -1,0 +1,73 @@
+article.container {
+  perspective: 2600px;
+}
+
+.container {
+  perspective-origin: 50% -1400px;
+}
+
+.stage {
+   margin: 0 auto;
+  transform-style: preserve-3d;
+  transform: rotateY(-45deg);
+  width: 460px;
+}
+
+.stage div {
+  position: absolute;
+  transform-style: preserve-3d;
+}
+
+.stage .back-left {
+  background-color: #6b522b;
+  border-left: 6px solid #574625;
+  border-top: 6px solid #8a683d;
+  height: 120px;
+  width: 500px;
+  transform: rotateY(90deg) translateX(-256px);
+}
+
+.stage .back-right {
+  background-color: #9c7442;
+  border-right: 6px solid #78552c;
+  border-top: 6px solid #b5854a;
+  height: 120px;
+  transform: translateX(253px) translateZ(3px);
+  width: 446px;
+}
+
+.stage .platform-left {
+  background-color: #bcb3a8;
+  border-bottom: 6px solid #857964;
+  height: 220px;
+  transform: rotateX(90deg) translateY(396px) translateX(253px) translateZ(-13px);
+  width: 446px;
+}
+.stage .platform-right {
+  background-color: #bcb3a8;
+  border-bottom: 6px solid #847660;
+  border-right: 6px solid #554c3d;
+  height: 164px;
+  transform: rotateX(90deg) translateY(88px) translateX(253px) translateZ(-41px);
+  width: 446px;
+}
+
+.stage .pit-left {
+  background-color: #4d4233;
+  height: 800px;
+  transform: translate3D(254px, 125px, 285px);
+  width: 447px;
+}
+.stage .pit-right {
+  background-color: #847660;
+  height: 800px;
+
+  transform: translate3D(254px, 125px, 173px);
+  width: 451px;
+}
+.stage .pit-back {
+  background-color: #6b522b;
+  height: 220px;
+  transform: rotateY(90deg) translate3D(-200px, 87px, 168px);
+  width: 170px;
+} 

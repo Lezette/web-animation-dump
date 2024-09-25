@@ -53,10 +53,14 @@ const main = () => {
   function animateColor (element, id) {
     id = id || 0;
 
-    const rgb = [0, 0, 0];
-    // change r,g, and b value to 255 every second
-    rgb[Math.floor((Date.now() / 1000 + id) % 3)] = 255;
+    // const rgb = [0, 0, 0];
+    // // change r,g, and b value to 255 every second
+    // rgb[Math.floor((Date.now() / 1000 + id) % 3)] = 255;
 
+    const r = Math.floor(Math.random() * 255) + 1;
+    const g = Math.floor(Math.random() * 255) + 1;
+    const b = Math.floor(Math.random() * 255) + 1;
+    const rgb = [r, g, b];
 
     element.animate({
       offest: 0.5,
