@@ -1,8 +1,7 @@
 body {
   background-color: #efe8dd;
   overflow: hidden;
-  /* background: linear-gradient(#ced5d3, #ced5d3 144px, #efe8dd 144px, #efe8dd 100%); */
-  background-color: black;
+  background: linear-gradient(#ced5d3, #ced5d3 144px, #efe8dd 144px, #efe8dd 100%);
   width: 90%;
 }
 
