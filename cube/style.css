@@ -1,6 +1,15 @@
+body {
+  background-color: black;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
 .container {
   perspective: 2000px;
-  margin: 10rem 20rem;
   animation: rotate-cube 20s linear infinite alternate-reverse forwards;
   perspective-origin: 50% 50%;
 
@@ -12,62 +21,76 @@
     border-radius: 10px;
     transform-style: preserve-3d;
     transition: transform 2s ease-in-out;
-  
+
+    img {
+      transform: translateY(150px) translateX(50px);
+
+    }
+
     .side {
       width: 200px;
       height: 200px;
-      border: 1.5px solid teal;
+      border: 1.5px solid white;
+
       border-radius: 5px;
       position: absolute;
       transition: transform 2s ease-in-out;
-  
+
       &.front {
-        background-color: teal;
+        background-color: rgba(255, 133, 93, .8);
         transform: translateZ(100px);
       }
-  
+
       &.back {
-        background-color: turquoise;
+        background-color: rgba(255, 133, 93, .8);
         transform: translateZ(-100px);
       }
-  
+
       &.right {
-        background-color: rgb(14, 60, 60);
+        background-color: #043F61;
         transform: translateX(100px) rotateY(90deg);
       }
+
       &.left {
-        background-color:deepskyblue;
+        background-color: rgba(4, 63, 97, .8);
         transform: translateX(-100px) rotateY(-90deg);
       }
+
       &.top {
-        background-color:dodgerblue;
+        background-color: rgb(255, 90, 49);
         transform: translateY(100px) rotateX(90deg);
       }
+
       &.bottom {
-        background-color: mediumaquamarine;
+        background-color: rgba(255, 90, 49, .6);
         transform: translateY(-100px) rotateX(-90deg);
       }
     }
-  
+
   }
 }
 
 .cube:hover {
   .side.front {
-    transform: translateZ(150px);
+    transform: translateZ(200px);
   }
+
   .side.back {
     transform: translateZ(-150px);
   }
+
   .side.right {
     transform: translateX(150px) rotateY(90deg);
   }
+
   .side.left {
     transform: translateX(-150px) rotateY(-90deg);
   }
+
   .side.top {
-    transform: translateY(150px) rotateX(90deg);
+    transform: translateY(200px) rotateX(90deg);
   }
+
   .side.bottom {
     transform: translateY(-150px) rotateX(-90deg);
   }
@@ -79,15 +102,19 @@
   0% {
     perspective-origin: 50% 50%;
   }
+
   25% {
     perspective-origin: 1000px 50%;
   }
+
   50% {
     perspective-origin: 50% 1000px;
   }
+
   75% {
     perspective-origin: -1000px 50%;
   }
+
   100% {
     perspective-origin: 50% -1000px;
   }
