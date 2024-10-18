@@ -1,9 +1,12 @@
 body {
   background-color: black;
-  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  font-size: 50px;
+  
 }
 
 
@@ -11,59 +14,56 @@ body {
 .container {
   perspective: 2000px;
   animation: rotate-cube 20s linear infinite alternate-reverse forwards;
-  perspective-origin: 50% 50%;
+  perspective-origin: 20% 50%;
+  
 
   .cube {
-    width: 200px;
-    height: 200px;
-    /* border: 1.5px solid whitesmoke; */
     position: relative;
     border-radius: 10px;
     transform-style: preserve-3d;
-    transition: transform 2s ease-in-out;
+    /* transition: transform 2s ease-in-out; */
 
     img {
-      transform: translateY(150px) translateX(50px);
+      position: absolute;
+      transform: translateY(1em) translateX(1em);
 
     }
 
     .side {
-      width: 200px;
-      height: 200px;
-      /* border: 1.5px solid white; */
+      width: 4em;
+      height: 4em;
       box-shadow: 0 0 0.5em #000a inset;
-      /* border-radius: 5px; */
       position: absolute;
       transition: transform 2s ease-in-out;
 
       &.front {
         background-color: rgba(255, 133, 93, .8);
-        transform: translateZ(100px);
+        transform: translateZ(2em);
       }
 
       &.back {
         background-color: rgba(255, 133, 93, .8);
-        transform: translateZ(-100px);
+        transform: translateZ(-2em);
       }
 
       &.right {
         background-color: #043F61;
-        transform: translateX(100px) rotateY(90deg);
+        transform: translateX(2em) rotateY(90deg);
       }
 
       &.left {
         background-color: rgba(4, 63, 97, .8);
-        transform: translateX(-100px) rotateY(-90deg);
+        transform: translateX(-2em) rotateY(-90deg);
       }
 
       &.top {
         background-color: rgb(255, 90, 49);
-        transform: translateY(100px) rotateX(90deg);
+        transform: translateY(2em) rotateX(90deg);
       }
 
       &.bottom {
         background-color: rgba(255, 90, 49, .6);
-        transform: translateY(-100px) rotateX(-90deg);
+        transform: translateY(-2em) rotateX(-90deg);
       }
     }
 
@@ -72,27 +72,27 @@ body {
 
 .cube:hover {
   .side.front {
-    transform: translateZ(200px);
+    transform: translateZ(4em);
   }
 
   .side.back {
-    transform: translateZ(-150px);
+    transform: translateZ(-3em);
   }
 
   .side.right {
-    transform: translateX(150px) rotateY(90deg);
+    transform: translateX(3em) rotateY(90deg);
   }
 
   .side.left {
-    transform: translateX(-150px) rotateY(-90deg);
+    transform: translateX(-3em) rotateY(-90deg);
   }
 
   .side.top {
-    transform: translateY(200px) rotateX(90deg);
+    transform: translateY(4em) rotateX(90deg);
   }
 
   .side.bottom {
-    transform: translateY(-150px) rotateX(-90deg);
+    transform: translateY(-3em) rotateX(-90deg);
   }
 
 }

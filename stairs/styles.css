@@ -1,0 +1,130 @@
+:root {
+  --background-color: black;
+  --floor-primary: #cdcdcd;
+  --floor-accent: #222;
+  --stage-light: #0000;
+  --stage-light-sec: #000;
+  --box-color: #ffbf00;
+}
+
+@media screen and (prefers-color-scheme: light)  {
+  :root {
+    --background-color: #e9e9e9;
+    --floor-accent: #ffffff;
+    --stage-light-sec: #e9e9e9;
+  }
+}
+
+
+html,body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--background-color);
+}
+
+body {
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 100em;
+  perspective-origin: 50% calc(50% - 8em);
+}
+
+.container {
+  transform-style: preserve-3d;
+  position: relative;
+  & > * {
+    position: absolute;
+    transform-style: preserve-3d;
+  }
+  .floor {
+    top: 4em;
+    width: 90em;
+    height: 90em;
+    background-image:
+    radial-gradient(var(--stage-light), var(--stage-light-sec) 80%);
+    /* repeating-conic-gradient(from 90deg, var(--floor-primary) 0deg 90deg, var(--floor-accent) 90deg 180deg); */
+    background-size: 
+    100%;
+    transform: translate(-50%, -50%) rotateX(90deg);
+  }
+
+
+  .first-stairs {
+    width: 25em;
+    height: 2em;
+    left: -20em;
+    transform: rotateY(-290deg);
+    .front, .back, .left, .right, .top, .bottom {
+      width: 100%;
+      height: 100%;
+      background-color: var(--box-color);
+      position: absolute;
+      box-shadow: 0 0 0.5em #000;
+    }
+    
+  }
+
+  .second-stairs {
+    width: 25em;
+    height: 2em;
+    left: -20em;
+    transform: rotateY(-290deg) translateX(-1em) translateY(-2.1em);
+    .front, .back, .left, .right, .top, .bottom {
+      width: 100%;
+      height: 100%;
+      background-color: var(--box-color);
+      position: absolute;
+    }
+  }
+
+  /* .third-stairs {
+    width: 25em;
+    height: 2em;
+    left: -20em;
+    transform: rotateY(-290deg) translateX(3em) translateY(3em);
+    .front, .back, .left, .right, .top, .bottom {
+      width: 100%;
+      height: 100%;
+      background-color: green;
+      position: absolute;
+    }
+  } */
+
+  .first-stairs, .second-stairs, .third-stairs {
+    .front {
+      transform: translateZ(4em);
+    }
+    .back {
+      transform: translateZ(-4em);
+    }
+    .left {
+      width: 10rem;
+      left: 5rem;
+      transform: rotateY(270deg) translateZ(8em);
+    }
+    .right {
+      width: 10rem;
+      right: 5rem;
+      transform: rotateY(90deg) translateZ(8em);
+    }
+    .top {
+      height: 8em;
+      transform: translateY(-50%) rotateX(-90deg);
+    }
+    .bottom {
+      height: 8em;
+      bottom: 0;
+      transform: translateY(50%) rotateX(90deg);
+    }
+  }
+}
+
+
+@keyframes rotateCuboid {
+  to {
+    transform: rotateY(-360deg);
+  }
+}
