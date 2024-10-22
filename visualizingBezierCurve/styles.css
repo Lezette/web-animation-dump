@@ -1,0 +1,101 @@
+* {
+  margin: 0;
+}
+
+html,
+body {
+  height: 100%;
+  align-content: center;
+  font-family: sans-serif;
+  box-sizing: border-box;
+  padding: 1em;
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  margin: 0 auto;
+
+  .x {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    bottom: 0;
+    display: flex;
+    align-items: end;
+
+    .labels {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: space-between;
+
+      div {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        /* align-items: end; */
+        border-right: 1px solid #454545;
+        border-bottom: 1px solid #454545;
+        color: #47454523;
+      }
+    }
+  }
+
+  .y {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+
+    .labels {
+      display: flex;
+      height: 100%;
+      width: 100%;
+      flex-direction: column;
+      position: absolute;
+
+      div {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        /* align-items: end; */
+        border-top: 1px solid #454545;
+        border-left: 1px solid #454545;
+        color: #47454523;
+      }
+    }
+  }
+
+  .moving-dot {
+    width: 1rem;
+    height: 1rem;
+    background-color: cadetblue;
+    border-radius: 50%;
+    /* position: absolute; */
+    /* bottom: 0; */
+    offset-path: path("M70,40 C70,70 70,70 70,40");
+    animation: moveDot 10s linear 1 forwards;
+  }
+
+}
+
+#control {
+  position: absolute;
+  right: 5rem;
+  top: 5rem;
+}
+
+@keyframes moveDot {
+  0% {
+    offset-distance: 0%;
+  }
+
+  100% {
+    offset-distance: 100%;
+  }
+}
