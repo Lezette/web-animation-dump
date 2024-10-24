@@ -163,18 +163,25 @@ body {
   }
 
   .ball {
+    position: absolute;
     width: 2rem;
     height: 2rem;
     border-radius: 50%;
     background-color: var(--floor-primary);
-    background-image: radial-gradient(circle at top,
+    background-image: radial-gradient(circle at bottom,
         white,
         #000);
-    animation: bounceball 2s linear infinite alternate-reverse both;
-    /* transform: translateY(-1.68em) translateX(-3em); */
-    /* transform: translateY(-4.09em) translateX(-6em); */
-    /* transform: translateY(-6.6em) translateX(-9em); */
+    /* offset-path: path("M -50 -16.2 A 20 -300 0 0 0 -80 -66.9 A 70 -500 0 0 0 -150 -120.2"); */
+    animation: bounceball 6s linear infinite alternate forwards;
   }
+
+
+
+  /* M -50 -16.2 A 20 -300 0 0 0 -80 -66.9 A 60 -500 0 0 0 -150 -120.2 */
+
+  /* transform: translateY(-1.68em) translateX(-3em); */
+  /* transform: translateY(-4.09em) translateX(-6em); */
+  /* transform: translateY(-6.6em) translateX(-9em); */
 
   button {
     bottom: -20em;
@@ -207,3 +214,13 @@ body {
     transform: translateY(-6.6em) translateX(-9em);
   }
 }
+
+/* @keyframes bounceball {
+  0% {
+    offset-distance: 0%;
+  }
+
+  100% {
+    offset-distance: 100%;
+  }
+} */

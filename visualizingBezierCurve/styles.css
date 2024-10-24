@@ -78,8 +78,12 @@ body {
     border-radius: 50%;
     /* position: absolute; */
     /* bottom: 0; */
-    offset-path: path("M70,40 C70,70 70,70 70,40");
-    animation: moveDot 10s linear 1 forwards;
+    /* offset-path: path("M 0 0 Q 500 300 200 0"); */
+    /* offset-path: path("M 0 0 C 70 1420 970 -480 750 700"); */
+    /* offset-path: path("M 0 0 V 200 H 150 z"); */
+    offset-path: path("M 0 300 A 100 150 0 1 1 250 300 A 100 150 0 1 1 450 400 A 100 150 0 1 1 700 600");
+    animation: moveDot 3s linear alternate infinite forwards;
+    /* animation-timing-function: cubic-bezier(.26, 1.28, 1, -0.62); */
   }
 
 }
