@@ -1,0 +1,37 @@
+:root {
+  --grass-color: #378f3d
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  min-height: 100%;
+  min-width: 100%;
+  background-color: #aaaaaa;
+  display: flex;
+  align-items: center;
+  font-size: 50px;
+}
+
+.container {
+  border: 1px solid #fff;
+  width: 40%;
+  height: 600px;
+  margin: auto;
+  position: relative;
+  perspective: 28em;
+  perspective-origin: 50% 3em;
+}
+
+.grass {
+  position: absolute;
+  transform-style: preserve-3d;
+  width: 4em;
+  height: 4em;
+  bottom: 0;
+
+}
