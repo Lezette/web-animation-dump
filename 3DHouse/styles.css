@@ -1,5 +1,5 @@
 :root {
-  --grass-color: #378f3d
+  --grass-color: #378f3d;
 }
 
 * {
@@ -11,10 +11,11 @@ html,
 body {
   min-height: 100%;
   min-width: 100%;
-  background-color: #aaaaaa;
+  background-color: black;
   display: flex;
   align-items: center;
-  font-size: 50px;
+  font-size: 20px;
+  color: beige;
 }
 
 .container {
@@ -23,15 +24,58 @@ body {
   height: 600px;
   margin: auto;
   position: relative;
-  perspective: 28em;
-  perspective-origin: 50% 3em;
+  perspective: 90em;
+  perspective-origin: 50% calc(50% - 8em);
 }
 
 .grass {
   position: absolute;
-  transform-style: preserve-3d;
-  width: 4em;
-  height: 4em;
   bottom: 0;
+  left: 4em;
+  transform-style: preserve-3d;
+  width: 28em;
+  height: 1em;
+  transform: rotateY(-40deg) translateX(1em);
+  /* box-shadow: ; */
+
+
+  div {
+    position: absolute;
+    width: 20rem;
+    height: 100%;
+    background-color: var(--grass-color);
+    text-align: center;
+  }
+
+  .front {
+    transform: translateZ(10em);
+  }
+
+  .back {
+    transform: translateZ(-10em);
+  }
+
+  .left {
+    left: -2em;
+    transform: rotateY(270deg) translateZ(8em);
+  }
+
+
+  .right {
+    right: 6em;
+    transform: rotateY(90deg) translateZ(8em);
+  }
+
+  .top {
+    height: 20em;
+    top: 0;
+    transform: translateY(-50%) rotateX(-90deg);
+  }
+
+  .bottom {
+    height: 20em;
+    bottom: 0;
+    transform: translateY(50%) rotateX(90deg);
+  }
 
 }
