@@ -332,6 +332,7 @@ body {
       width: 100%;
       height: 100%;
       background-color: var(--secondary-red);
+      /* opacity: 0; */
 
 
       &:nth-child(1) {
@@ -350,6 +351,65 @@ body {
       &:nth-child(3) {
         height: 1em;
         transform: rotateX(90deg) translateZ(0.5em);
+      }
+    }
+
+    .window-container {
+      position: absolute;
+      width: 1.5em;
+      z-index: 200;
+      left: 2.2em;
+      top: 1em;
+      transform: translateX(-3em) translateZ(2em);
+
+      .window {
+        background-color: var(--accent-color);
+        width: 1.5em;
+        height: 1.5em;
+        position: absolute;
+        
+        &:nth-child(1) {
+          &::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            width: 1px;
+            height: 100%;
+            border-left: 1px solid var(--border-color);
+            
+          }
+          &::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            bottom: 50%;
+            border-bottom: 1px solid var(--border-color);
+          }
+        }
+
+        &:nth-child(2) {
+          top: 3em;
+          height: 2em;
+          
+          &::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            width: 1px;
+            height: 100%;
+            border-left: 1px solid var(--border-color);
+            
+          }
+          &::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            bottom: 50%;
+            border-bottom: 1px solid var(--border-color);
+          }
+        }
       }
     }
   }
