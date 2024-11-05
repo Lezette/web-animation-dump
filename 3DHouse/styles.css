@@ -132,6 +132,16 @@ body {
         position: absolute;
         transform: rotate(90deg);
       }
+
+      .knob {
+        position: absolute;
+        background-color: black;
+        border-radius: 50%;
+        width: .5em;
+        height: .5em;
+        top: 50%;
+        left: calc(50% + 0.2em);
+      }
     }
 
     .window-container {
@@ -460,14 +470,11 @@ body {
     right: 10em;
     transform: translateZ(-2em) rotateY(-35deg);
 
-
     .side {
       position: absolute;
       width: 100%;
       height: 100%;
       background-color: var(--main-red);
-      
-
 
       &:nth-child(1) {
         transform: translateZ(0.7em);
@@ -490,5 +497,44 @@ body {
         transform: rotateY(270deg) translateZ(0.7em);
       }
     }
+  }
+
+
+  .smoke {
+    position: absolute;
+    top: 35%;
+    right: 36%;
+
+    span {
+      position:absolute;
+      min-width:10px;
+      height:3em;
+      background:lightgray;
+      border-radius:20%;
+      animation: animateSmoke 3s linear infinite;
+      opacity: 0;
+      filter: blur(8px);
+      animation-delay: calc(var(--i) * 1s);
+    }
+  }
+}
+
+
+@keyframes animateSmoke {
+  0% {
+    transform: translateY(0) scaleX(1);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-75px) scaleX(1.5);
+  }
+  95% {
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(-100px) scaleX(2.5);
   }
 }
