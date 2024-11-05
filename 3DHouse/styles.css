@@ -504,6 +504,8 @@ body {
     position: absolute;
     top: 35%;
     right: 36%;
+    display: flex;
+    justify-content: center;
 
     span {
       position:absolute;
@@ -526,15 +528,15 @@ body {
     opacity: 0;
   }
   15% {
-    opacity: 1;
+    opacity: .6;
   }
   50% {
-    transform: translateY(-75px) scaleX(1.5);
+    transform: translateY(-75px) translateX(20px) scaleX(1.5);
   }
   95% {
     opacity: 0;
   }
   100% {
-    transform: translateY(-100px) scaleX(2.5);
+    transform: translateY(-100px) translateX(0px) scaleX(2.5);
   }
 }
