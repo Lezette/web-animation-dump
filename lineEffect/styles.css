@@ -1,0 +1,62 @@
+html {
+  background-color: black;
+  color: lightgray;
+}
+
+h1 {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  svg {
+    position: absolute;
+    top: 15px;
+
+    #hand-drawn-line {
+      stroke-dasharray: 600;
+      display: block;
+      stroke-dashoffset: 600;
+      animation: drawLine 2s ease-out forwards;
+    }
+  }
+
+}
+
+
+#straight-line {
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  animation: drawLine 2s ease-out forwards;
+}
+
+#weird-curve {
+  stroke-dasharray: 580;
+  stroke-dashoffset: 580;
+  animation: drawLine 3s forwards;
+  animation-timing-function: cubic-bezier(0, 2.19, 1, -0.42)
+}
+
+#weird-circle {
+  stroke-dasharray: 2300;
+  stroke-dashoffset: 2300;
+  animation: drawLine 2s ease-out forwards;
+}
+
+#first-arc,
+#sec-arc {
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  animation: drawLine 2s ease-out forwards;
+}
+
+#circle {
+  stroke-dasharray: 300;
+  stroke-dashoffset: 300;
+  animation: drawLine 2s ease-out forwards;
+}
+
+@keyframes drawLine {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
