@@ -22,6 +22,8 @@ h1 {
 
 }
 
+/* animate the stroke-dasharray, use a value exactly or bigger than the 
+total length of the element. Use stroke-dashoffset to hide it initially */
 
 #straight-line {
   stroke-dasharray: 200;
