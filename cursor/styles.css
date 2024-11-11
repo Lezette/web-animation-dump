@@ -1,0 +1,58 @@
+* {
+  margin: 0;
+}
+
+html {
+  background-color: black;
+  color: lightgray;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+}
+
+.electric-text {
+  font-size: 3rem;
+  background-color: black;
+  color: #fff;
+  mix-blend-mode: multiply;
+  /* background-color: white;
+  color: #444;
+  mix-blend-mode: screen; */
+  text-align: center;
+}
+
+.texture {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: -100%;
+  z-index: -1;
+  background: blue;
+  background: linear-gradient(40deg,
+      rgba(255, 255, 255, 1) 77%,
+      rgba(0, 128, 255, 1) 89%,
+      rgba(255, 32, 32, 1) 90%,
+      rgba(255, 255, 255, 1) 92%);
+  animation: electric 3s linear infinite;
+
+}
+
+
+@keyframes electric {
+  0% {
+    left: -100%
+  }
+
+  50% {
+    left: 100%;
+    left: 0%;
+  }
+
+  100% {
+    left: 100%;
+    left: 0%;
+  }
+}
