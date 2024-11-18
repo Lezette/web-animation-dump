@@ -3,6 +3,7 @@ const boxes = document.querySelectorAll('.box');
 document.addEventListener('mousemove', (event) => {
   const cursorX = event.clientX
   const cursorY = event.clientY
+
   boxes.forEach(box => {
 
     const rect = box.getBoundingClientRect();
@@ -14,7 +15,7 @@ document.addEventListener('mousemove', (event) => {
     const distanceY = elementY - cursorY;
 
     const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
-    const maxDistance = 100;
+    const maxDistance = 200;
     const moveDistance = Math.max(0, maxDistance - distance) / maxDistance;
 
     box.style.transform = `translate(${distanceX * moveDistance}px, ${distanceY * moveDistance}px)`

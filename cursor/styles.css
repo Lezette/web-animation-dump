@@ -65,11 +65,13 @@ html {
   margin: 4rem auto;
   position: relative;
 
+
   .box {
     width: 3rem;
     height: 3rem;
     background-color: bisque;
     border-radius: 100%;
     transition: transform 1s ease-out;
+    box-shadow: 0 0 5px 2px rgba(217, 182, 182, 0.75);
   }
 }
