@@ -1,0 +1,72 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+
+  a:hover {
+    color: #747bff;
+  }
+
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+
+
+.faq-section {
+  height: 40vh;
+  /* Each FAQ takes up the full viewport height */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 2rem;
+}
+
+.faq-question {
+  position: sticky;
+  top: 0;
+  /* Sticks to the top of the viewport */
+  z-index: 10;
+  padding: 1rem 0;
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+.faq-answer {
+  margin-top: 2rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  flex-grow: 1;
+  /* Ensures content scrolls naturally */
+}
