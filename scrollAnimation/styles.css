@@ -1,0 +1,68 @@
+/* General styling */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+.about-dropdowns-section {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.about-dropdowns-bespoke-columns-div {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.about-dropdown-bespoke-column-left {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.about-dropdown-bespoke-column-right {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.about-dropdown-item {
+  overflow: hidden;
+  transition: height 0.4s ease;
+  /* Smooth expand/collapse */
+  height: 0;
+  /* Collapsed by default */
+}
+
+.about-dropdown-item.active {
+  height: auto;
+  /* Requires workaround (see JS) for animation */
+}
+
+.about-dropdown-heading-div {
+  cursor: pointer;
+  /* Clickable heading */
+  padding: 1rem;
+  /* Optional for better spacing */
+}
+
+.about-dropdown-text-div {
+  opacity: 0;
+  /* Hidden initially */
+  transition: opacity 0.4s ease;
+}
+
+.about-dropdown-item.active .about-dropdown-text-div {
+  opacity: 1;
+}
